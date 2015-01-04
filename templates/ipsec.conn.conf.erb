@@ -1,0 +1,7 @@
+# Strongswan Connection Configuration File: <%= @name %>
+#
+# * Managed by Puppet, do not modify *
+#
+conn <%= @name %>
+<% @params.sort.each do |k,v| %>  <%= k %>=<%=v%>
+<% end -%>

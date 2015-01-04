@@ -1,0 +1,10 @@
+# /etc/ipsec.conf - strongsSwan IPSec configuration file
+#
+# * Managed by Puppet, do not modify *
+#
+
+config setup
+  <% @_ipsec_options.sort.each do |k,v| %><%= k %> = <%= v %>
+  <% end -%>
+
+include <%= @conn_conf_path %>/ipsec.*.conf

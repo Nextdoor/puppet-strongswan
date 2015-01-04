@@ -1,0 +1,45 @@
+# Options for the charon IKE daemon.
+#
+# * Managed by Puppet, do not modify *
+#
+charon {
+<% @_charon_options.sort.each do |k,v| %><% if v.is_a?(String) %>  <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+
+  crypto_test {
+<% @_charon_options['crypto_test'].sort.each do |k,v| %><% if v.is_a?(String) %>    <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+  }
+  host_resolver {
+<% @_charon_options['host_resolver'].sort.each do |k,v| %><% if v.is_a?(String) %>    <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+  }
+  leak_detective {
+<% @_charon_options['leak_detective'].sort.each do |k,v| %><% if v.is_a?(String) %>    <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+  }
+  processor {
+<% @_charon_options['processor'].sort.each do |k,v| %><% if v.is_a?(String) %>    <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+    priority_threads {
+<% @_charon_options['processor']['priority_threads'].sort.each do |k,v| %>      <% if v.is_a?(String) %><%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+    }
+  }
+  tls {
+<% @_charon_options['tls'].sort.each do |k,v| %><% if v.is_a?(String) %>    <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+  }
+  x509 {
+<% @_charon_options['x509'].sort.each do |k,v| %><% if v.is_a?(String) %>    <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+  }
+}

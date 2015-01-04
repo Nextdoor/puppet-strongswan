@@ -1,0 +1,11 @@
+fixtures:
+  repositories:
+    "stdlib":
+      "repo": "git://github.com/puppetlabs/puppetlabs-stdlib.git"
+      "ref": "v2.2.1"
+    "firewall":
+      "repo": "git://github.com/puppetlabs/puppetlabs-firewall.git"
+      "ref": "1.3.0"
+  symlinks:
+  symlinks:
+    "strongswan": "#{source_dir}"
