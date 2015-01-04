@@ -69,7 +69,7 @@ define strongswan::presets::aws_vpc (
       'right'       => $ipsec_1_vpg_ip,
       'rightid'     => $ipsec_1_vpg_ip})
   $_ipsec_1_secrets = [
-    { 'left_id' => $customer_gateway_ip, 'right_id' => $ipsec_1_vpg_ip,
+    { 'left_id' => '%any', 'right_id' => $ipsec_1_vpg_ip,
       'auth'    => 'PSK', 'key' => $ipsec_1_psk } ]
 
   $_ipsec_2_params = merge($_aws_params,
@@ -78,7 +78,7 @@ define strongswan::presets::aws_vpc (
       'right'       => $ipsec_2_vpg_ip,
       'rightid'     => $ipsec_2_vpg_ip})
   $_ipsec_2_secrets = [
-    { 'left_id' => $customer_gateway_ip, 'right_id' => $ipsec_2_vpg_ip,
+    { 'left_id' => '%any', 'right_id' => $ipsec_2_vpg_ip,
       'auth'    => 'PSK', 'key' => $ipsec_2_psk } ]
 
   # Now create the two tunnels
