@@ -42,4 +42,16 @@ charon {
 <% end -%>
 <% end -%>
   }
+  syslog {
+    daemon {
+<% @_charon_options['syslog']['daemon'].sort.each do |k,v| %><% if v.is_a?(String) %>      <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+    }
+    auth {
+<% @_charon_options['syslog']['auth'].sort.each do |k,v| %><% if v.is_a?(String) %>      <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+    }
+  }
 }

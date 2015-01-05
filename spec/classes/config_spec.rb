@@ -42,6 +42,7 @@ describe 'strongswan::config', :type => 'class' do
                              'priority_threads' => { 'priority_thread_foo' => 'priority_thread_bar' } },
         'tls'            => { 'tls_foo' => 'tls_bar' },
         'x509'           => { 'x509_foo' => 'x509_bar' },
+        'syslog'         => { 'daemon' => { 'a_test' => '1' }, 'auth' => { 'a_test' => '2' } },
       }
     }}
     it do
@@ -60,6 +61,10 @@ describe 'strongswan::config', :type => 'class' do
         'content' => /tls {\n    tls_foo = tls_bar\n/)
       should contain_file('/etc/strongswan.d/charon.conf').with(
         'content' => /x509 {\n    x509_foo = x509_bar\n/)
+      should contain_file('/etc/strongswan.d/charon.conf').with(
+        'content' => /daemon {\n      a_test = 1\n/)
+      should contain_file('/etc/strongswan.d/charon.conf').with(
+        'content' => /auth {\n      a_test = 2\n/)
     end
   end
 end
