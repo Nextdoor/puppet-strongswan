@@ -40,7 +40,25 @@ class strongswan::env {
     'processor'          => {
       'priority_threads' => {},
     },
-    'tls'  => {},
-    'x509' => {},
+    'tls'          => {},
+    'x509'         => {},
+    'syslog'       => {
+      'daemon'     => {
+        'default'  => '3',
+        'ike_name' => 'yes',
+        'mgr'      => '1',
+        'ike'      => '1',
+        'net'      => '0',
+        'enc'      => '0',
+        'cfg'      => '2',
+        'asn'      => '1',
+        'job'      => '1',
+        'knl'      => '1',
+      },
+      'auth'       => {
+        'default'  => '-1',
+        'ike'      => '0',
+      }
+    }
   }
 }

@@ -50,35 +50,65 @@ define strongswan::presets::aws_vpc (
   # should be done ahead of time if you want any custom settings.
   include strongswan
 
-  # Common VPC connection settings reused by both connections
+  # Common VPC connection settings reused by both connections. These parameters
+  # are described in detail in your VPN Connection configuration file that can
+  # be downloaded from Amazon, but are also described in their documentation
+  # here:
+  #
+  #   http://docs.aws.amazon.com/AmazonVPC/latest/NetworkAdminGuide/Introduction.html#CGRequirements
+  #
   $_aws_params = {
+    # VPCs use IKEv2 as their key exchange model.
+    'keyexchange' => 'ikev2',
     'esp'         => 'aes128-sha1-modp1024',
+
+    # Expected key-lifetimes
     'ikelifetime' => '28800s',
     'keylife'     => '3600s',
+
+    # Amazon will initiate re-keying on its own, but will not respond to our
+    # own request to re-key. Thus, we disable client-side re-keying.
     'rekey'       => 'no',
     'reauth'      => 'no',
-    'keyexchange' => 'ikev2',
-    'auto'        => 'start',
+
+    # Use the pre-shared-secret model to authenticate with the endpoints.
     'authby'      => 'secret',
+
+    # Amazon closes VPC Tunnels after 5-10 minutes of "inactivity" (as defined
+    # by amazon, its "interesting traffic" ... DPD traffic does not apply).
+    # This tells strongSwan to automatically restart the connection the second
+    # its closed by Amazon.
+    'closeaction' => 'restart',
+
+    # Dead Peer Detection settings.
+    'dpddelay'    => '10s',
+    'dpdtimeout'  => '30s',
+
+    # In the event that the DPD timeout occurs, we are the ones re-initiating the connection.
     'dpdaction'   => 'restart',
+
+    # The VPC CIDR that we will be routing traffic to. This is common between
+    # both the primary and failover ipsec tunnels.
     'rightsubnet' => $vpc_subnet,
   }
   $_ipsec_1_params = merge($_aws_params,
-    { 'leftid'      => $customer_gateway_ip,
+    { 'auto'        => 'start',
+      'leftid'      => $customer_gateway_ip,
       'leftsubnet'  => $customer_subnet,
       'right'       => $ipsec_1_vpg_ip,
       'rightid'     => $ipsec_1_vpg_ip})
   $_ipsec_1_secrets = [
-    { 'left_id' => $customer_gateway_ip, 'right_id' => $ipsec_1_vpg_ip,
+    { 'left_id' => '%any', 'right_id' => $ipsec_1_vpg_ip,
       'auth'    => 'PSK', 'key' => $ipsec_1_psk } ]
 
   $_ipsec_2_params = merge($_aws_params,
-    { 'leftid'      => $customer_gateway_ip,
+    { 'auto'        => 'start',
+      'leftid'      => $customer_gateway_ip,
       'leftsubnet'  => $customer_subnet,
       'right'       => $ipsec_2_vpg_ip,
       'rightid'     => $ipsec_2_vpg_ip})
   $_ipsec_2_secrets = [
-    { 'left_id' => $customer_gateway_ip, 'right_id' => $ipsec_2_vpg_ip,
+    { 'left_id' => '%any', 'right_id' => $ipsec_2_vpg_ip,
       'auth'    => 'PSK', 'key' => $ipsec_2_psk } ]
 
   # Now create the two tunnels
