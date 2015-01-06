@@ -1,11 +1,13 @@
 {
-    "name": "strongswan",
+    "name": "nextdoor-strongswan",
     "version": "0.0.1",
-    "source": "https://github.com/Nextdoor/puppet-strongswan",
     "author": "Nextdoor",
     "license": "Apache-2.0",
+    "source": "https://github.com/Nextdoor/puppet-strongswan",
     "project_page": "https://github.com/Nextdoor/puppet-strongswan",
+    "issues_url": "https://github.com/Nextdoor/puppet-strongswan/issues",
     "summary": "Nextdoor strongSwan Management Module",
+    "tags": [ "strongswan", "swan", "vpc", "tunnel", "openswan", "vpn" ],
     "operatingsystem_support": [
       {
         "operatingsystem": "Debian",
