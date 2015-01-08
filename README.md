@@ -164,7 +164,7 @@ Private IP CIDR range to hand addresses out to VPN clients.
 Private IP that the VPN server will use for routing VPN client data.
 (_default: 192.168.0.1/22_)
 
-### Definition: strongswan::presets::strongswan::presets::aws\_vpc
+### Definition: strongswan::presets::aws\_vpc
 
 Configures a VPN connection into an Amazon VPC following their [Generic
 Customer Gateway without Border Gateway
@@ -179,8 +179,8 @@ strongswan::presets::aws_vpc { 'myVPC':
   customer_subnet     => <your servers CIDR block>,
   ipsec_1_vpg_ip      => <AWS VPC IPSec #1 Endpoint>,
   ipsec_1_psk         => <PSK for IPSec #1 Endpoint>,
-  ipsec_2_vpg_ip      => <AWS VPC IPSec #1 Endpoint>,
-  ipsec_2_psk         => <PSK for IPSec #1 Endpoint>,
+  ipsec_2_vpg_ip      => <AWS VPC IPSec #2 Endpoint>,
+  ipsec_2_psk         => <PSK for IPSec #2 Endpoint>,
   vpc_subnet          => <your VPC CIDR block>,
 }
 ```
