@@ -29,8 +29,8 @@
 # === Optional Parameters
 #
 # [*masquerade*]
-#   Present/Absent: Whether or not to masquerade traffic to the _private_subnet_ from
-#   the Meraki IPs.
+#   Present/Absent: Whether or not to masquerade traffic to the
+#   _private_subnet_ from the Meraki IPs.
 #   (default: True)
 #
 # === Authors
@@ -106,7 +106,7 @@ define strongswan::presets::meraki_vpn (
   }
 
   # Now set up the actual Strongswan configuration
-  strongswan::conn { "${title}":
+  strongswan::conn { $title:
     params  => $_params,
     secrets => $_secrets,
   }

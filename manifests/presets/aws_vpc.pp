@@ -84,7 +84,8 @@ define strongswan::presets::aws_vpc (
     'dpddelay'    => '10s',
     'dpdtimeout'  => '30s',
 
-    # In the event that the DPD timeout occurs, we are the ones re-initiating the connection.
+    # In the event that the DPD timeout occurs, we are the ones re-initiating
+    # the connection.
     'dpdaction'   => 'restart',
 
     # The VPC CIDR that we will be routing traffic to. This is common between
