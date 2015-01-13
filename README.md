@@ -205,3 +205,43 @@ configured in your VPN Connection endpoint in Amazon.
 #### `ipsec_2_psk`
 (Line 109 of the Generic VPC Configuration from Amazon)
 
+### Definition: strongswan::presets::meraki\_vpn
+
+Configures an incoming VPN service for a Meraki MX-series router using IKEv1
+per their
+[documentation](https://kb.meraki.com/knowledge_base/troubleshooting-3rd-party-site-to-site-vpn).
+
+```puppet
+strongswan::presets::meraki_vpn { 'our-office':
+  meraki_public_ip => <your meraki/office public ip address>,
+  meraki_subnet    => <your internal office subnet>,
+  swan_public_ip   => <your strongswan server public address>,
+  swan_subnet      => <your strongswan server private subnet>,
+  psk              => <pre-shared-key>
+  masquerade       => <whether or not to enable ip masquerading>
+}
+```
+
+#### `meraki_public_ip`
+The Public IPv4 address that your Meraki has on the Internet. Used to
+configure inbound access through the Firewall to the network
+
+#### `meraki_subnet`
+The IP CIDR that your Meraki is hosting behind it. Likely matches the range
+described in the 'Local networks' section of the site-to-site VPN page.
+
+#### `swan_public_ip`
+The public IP address of the strongSwan server -- used to help handle
+NAT-Traversal issues.
+
+#### `swan_subnet`
+The IP CIDR that you want your strongSwan server to provide access to your
+Merakis. Should exactly match the _Private subnets_ configuration option in
+the Meraki site-to-site VPN page.
+
+#### `psk`
+The pre-shared-key you've entered into your Meraki site-to-site VPN page.
+
+#### `masquerade`
+Either `present` or `absent`: Whether or not to enable IP masquerading on the
+strongSwan host.
