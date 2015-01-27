@@ -55,7 +55,8 @@ define strongswan::presets::meraki_vpn (
     'ike'           => '3des-sha1',
     'esp'           => 'aes256-sha1-noesn',
     'keylife'       => '8h',
-    'rekeymargin'   => '3m',
+    'rekey'         => 'no',
+    'reauth'        => 'no',
 
     'left'          => $::ipaddress,
     'leftid'        => $swan_public_ip,
