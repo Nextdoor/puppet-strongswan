@@ -52,7 +52,7 @@ define strongswan::presets::meraki_vpn (
     'auto'          => 'add',
     'ikelifetime'   => '8h',
     'keyexchange'   => 'ikev1',
-    'ike'           => '3des-sha1',
+    'ike'           => '3des-sha1-modp11024!',
     'esp'           => 'aes256-sha1-noesn',
     'keylife'       => '8h',
     'rekey'         => 'no',
