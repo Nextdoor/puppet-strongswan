@@ -4,7 +4,7 @@ script:
   - "bundle exec rake lint"
   - "bundle exec rake spec SPEC_OPTS='--format documentation --color'"
 rvm:
-  - 1.8.7
+#  - 1.8.7
   - 1.9.3
   - 2.0.0
 env:
