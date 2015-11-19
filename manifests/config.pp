@@ -104,10 +104,27 @@ class strongswan::config (
     content   => template('strongswan/ipsec.secrets.erb');
   }
 
+  $strongswan_d = '/etc/strongswan.d'
+  $charon_conf = "${strongswan_d}/charon.conf"
+
+  # Ensure settings from strongwan.d are included.
+  file { $strongswan_d:
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+  }
+
+  file_line { 'include-strongswan.d':
+    ensure => present,
+    path   => '/etc/strongswan.conf',
+    line   => 'include strongswan.d/*.conf',
+  }
+
   # Merge the supplied charon configuration options and generate the charon
-  # config file
+  # config file.
   $_charon_options = merge($strongswan::env::charon_options, $charon_options)
-  file { '/etc/strongswan.d/charon.conf':
+  file { $charon_conf:
     ensure  => file,
     owner   => 'root',
     group   => 'root',
