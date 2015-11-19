@@ -17,7 +17,13 @@ class strongswan::env {
                           'strongswan-plugin-xauth-pam' ]
 
   # Service configuration options
-  $service_name   = 'strongswan'
+  if $::lsbdistcodename in ['precise', 'wheezy'] {
+    $strongswan_4 = true
+    $service_name = 'ipsec'
+  } else {
+    $strongswan_4 = false
+    $service_name = 'strongswan'
+  }
   $service_ensure = 'running'
   $service_enable = true
 
