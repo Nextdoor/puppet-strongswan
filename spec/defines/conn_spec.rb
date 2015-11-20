@@ -35,7 +35,7 @@ describe 'strongswan::conn', :type => 'define' do
       :params => {
         'left'      => '1.2.3.4',
         'leftcert'  => 'foo.example.dev',
-        'leftid'    => '@foo.example.dev.pem'
+        'leftid'    => '@foo.example.dev.pem',
         'right'     => '2.3.4.5',
         'rightid'   => '@bar.example.dev',
       },
