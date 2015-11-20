@@ -11,6 +11,7 @@
 #        'auth'    => 'PSK', 'key' => 'xYsdfkjkasd' },
 #      { 'left_id' => '10.0.0.2', 'right_id' => '%any',
 #        'auth'    => 'PSK', 'key' => 'xYsdfkjkasd' },
+#      { 'auth' => 'RSA', 'key' => "${::fqdn}.pem" },
 #    ]
 #
 # === Authors
