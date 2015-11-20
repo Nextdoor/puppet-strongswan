@@ -18,10 +18,8 @@ class strongswan::env {
 
   # Service configuration options
   if $::lsbdistcodename in ['precise', 'wheezy'] {
-    $strongswan_4 = true
     $service_name = 'ipsec'
   } else {
-    $strongswan_4 = false
     $service_name = 'strongswan'
   }
   $service_ensure = 'running'
