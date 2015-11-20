@@ -55,6 +55,7 @@ define strongswan::conn (
     owner     => 'root',
     group     => 'root',
     mode      => '0600',
+    backup    => false,
     show_diff => false,
     content   => template('strongswan/ipsec.conn.secrets.erb'),
     notify    => Class['strongswan::service'],
