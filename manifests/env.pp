@@ -17,9 +17,10 @@ class strongswan::env {
                           'strongswan-plugin-xauth-pam' ]
 
   # Service configuration options
-  $service_name   = 'strongswan'
-  $service_ensure = 'running'
-  $service_enable = true
+  $service_name     = 'strongswan'
+  $service_provider = 'upstart'
+  $service_ensure   = 'running'
+  $service_enable   = true
 
   # Where do we store all of the custom connection configs?
   $conn_conf_path    = '/etc/ipsec.d/conns'
