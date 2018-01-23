@@ -86,6 +86,15 @@ strongswan::conn { 'myconn':
 }
 ```
 
+Or through Hiera:
+
+``` yaml
+strongswan::conns:
+  myconn:
+    params: {}
+    secrets: []
+```
+
 #### `params`
 A hash that contains all of the `key`=>`value` parameters for your connection.
 Expects that you know all of the parameters required, and it will fill them in

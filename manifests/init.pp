@@ -63,7 +63,8 @@ class strongswan (
   $service_enable     = $strongswan::env::service_enable,
   $strongswan_package = $strongswan::env::strongswan_package,
   $strongswan_version = $strongswan::env::strongswan_version,
-  $strongswan_plugins = $strongswan::env::strongswan_plugins
+  $strongswan_plugins = $strongswan::env::strongswan_plugins,
+  $conns              = {}
 ) inherits strongswan::env {
   class { 'strongswan::install':
     package => $strongswan_package,
@@ -92,4 +93,7 @@ class strongswan (
     subscribe => Class['strongswan::config'],
     require   => Class['strongswan::config'];
   }
+
+  # Optionally manage connections through Hiera
+  create_resources(strongswan::conn, $conns)
 }
