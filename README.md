@@ -61,7 +61,7 @@ Name of the StrongSwan service daemon.
 
 #### `service_provider`
 Name of the init system to use e.g. 'upstart' or 'systemd'.
-(_default: upstart)
+(_default: upstart_)
 
 #### `service_ensure`
 Whether to ensure the service is running or not.
