@@ -29,6 +29,7 @@ class { 'strongswan':
   ipsec_options      => <ipsec options>,
   secrets_conf_path  => <path to store secrets>,
   service_name       => <ipsec service name>,
+  service_provider   => <init system name>,
   service_ensure     => <ipsec service ensure>,
   service_enable     => <ipsec service enable bool>,
   strongswan_package => <strongswan package name>,
@@ -57,6 +58,10 @@ Directory to store individual IPSec Connection secret files in.
 #### `service_name`
 Name of the StrongSwan service daemon.
 (_default: strongswan_)
+
+#### `service_provider`
+Name of the init system to use e.g. 'upstart' or 'systemd'.
+(_default: upstart_)
 
 #### `service_ensure`
 Whether to ensure the service is running or not.
