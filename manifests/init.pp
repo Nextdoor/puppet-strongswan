@@ -25,10 +25,6 @@
 #   Name of the StrongSwan service daemon.
 #   (default: strongswan)
 #
-# [*service_provider*]
-#   The service backend to use.
-#   (default: upstart)
-#
 # [*service_ensure*]
 #   Whether to ensure the service is running or not.
 #   (default: running)
@@ -58,7 +54,6 @@ class strongswan (
   $ipsec_options      = {},
   $secrets_conf_path  = $strongswan::env::secrets_conf_path,
   $service_name       = $strongswan::env::service_name,
-  $service_provider   = $strongswan::env::service_provider,
   $service_ensure     = $strongswan::env::service_ensure,
   $service_enable     = $strongswan::env::service_enable,
   $strongswan_package = $strongswan::env::strongswan_package,
@@ -88,7 +83,6 @@ class strongswan (
   class { 'strongswan::service':
     ensure    => $service_ensure,
     service   => $service_name,
-    provider  => $service_provider,
     enable    => $service_enable,
     subscribe => Class['strongswan::config'],
     require   => Class['strongswan::config'];
