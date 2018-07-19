@@ -18,7 +18,6 @@ class strongswan::env {
 
   # Service configuration options
   $service_name     = 'strongswan'
-  $service_provider = 'upstart'
   $service_ensure   = 'running'
   $service_enable   = true
 
