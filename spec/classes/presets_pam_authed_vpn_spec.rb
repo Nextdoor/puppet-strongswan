@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'strongswan::presets::pam_authed_vpn', :type => 'class' do
+  let(:facts) { FACTS }
 
   context 'default params' do
     it do

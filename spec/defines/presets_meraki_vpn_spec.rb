@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'strongswan::presets::meraki_vpn', :type => 'define' do
+  let(:facts) { FACTS }
   let(:title) { 'UNITTEST' }
 
   context 'main test' do

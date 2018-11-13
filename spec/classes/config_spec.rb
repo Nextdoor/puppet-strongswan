@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'strongswan::config', :type => 'class' do
+  let(:facts) { FACTS }
 
   context 'default params' do
     it do

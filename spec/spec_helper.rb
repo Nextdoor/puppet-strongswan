@@ -23,4 +23,6 @@ FACTS = {
   :lsbdistrelease => '12.04',
   :lsbmajdistrelease => '12',
   :kernel => 'linux',
+  :ipaddress_eth0 => '127.0.0.1',
+  :ipaddress => '127.0.0.1',
 }
