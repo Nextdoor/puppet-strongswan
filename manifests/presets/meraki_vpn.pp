@@ -73,6 +73,8 @@ define strongswan::presets::meraki_vpn (
       'auth'     => 'PSK',
       'key'      => $psk }
   ]
+  
+  $_primary_interface = $::networking['primary']
 
   # Make sure the strongswan service has been configured
   include strongswan
@@ -91,7 +93,7 @@ define strongswan::presets::meraki_vpn (
     chain    => 'POSTROUTING',
     jump     => 'MASQUERADE',
     proto    => all,
-    outiface => 'eth0',
+    outiface => $_primary_interface,
     source   => $meraki_subnet,
     table    => 'nat';
 
@@ -99,7 +101,7 @@ define strongswan::presets::meraki_vpn (
     chain        => 'POSTROUTING',
     action       => 'accept',
     proto        => all,
-    outiface     => 'eth0',
+    outiface     => $_primary_interface,
     source       => $meraki_subnet,
     ipsec_policy => 'ipsec',
     ipsec_dir    => 'out',
