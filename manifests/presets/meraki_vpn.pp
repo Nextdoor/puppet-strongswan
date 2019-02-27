@@ -73,7 +73,7 @@ define strongswan::presets::meraki_vpn (
       'auth'     => 'PSK',
       'key'      => $psk }
   ]
-  
+
   $_primary_interface = $::networking['primary']
 
   # Make sure the strongswan service has been configured
