@@ -33,9 +33,13 @@
 #   _private_subnet_ from the Meraki IPs.
 #   (default: True)
 #
+# [*interface*]
+#   The network interface to use for the strongSwan server.
+#
 # === Authors
 #
 # Matt Wise
+# Alex Kennedy <alexzanderkennedy@gmail.com>
 #
 define strongswan::presets::meraki_vpn (
   $meraki_public_ip,
@@ -44,6 +48,7 @@ define strongswan::presets::meraki_vpn (
   $swan_subnet,
   $psk,
   $masquerade = present,
+  $interface  = $::networking['primary'],
 ) {
   # This configuration works with the 'default' IPSec policies defined in
   # Meraki MX-series security appliances.
@@ -91,7 +96,7 @@ define strongswan::presets::meraki_vpn (
     chain    => 'POSTROUTING',
     jump     => 'MASQUERADE',
     proto    => all,
-    outiface => 'eth0',
+    outiface => $interface,
     source   => $meraki_subnet,
     table    => 'nat';
 
@@ -99,7 +104,7 @@ define strongswan::presets::meraki_vpn (
     chain        => 'POSTROUTING',
     action       => 'accept',
     proto        => all,
-    outiface     => 'eth0',
+    outiface     => $interface,
     source       => $meraki_subnet,
     ipsec_policy => 'ipsec',
     ipsec_dir    => 'out',
