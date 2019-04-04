@@ -25,4 +25,10 @@ FACTS = {
   :kernel => 'linux',
   :ipaddress_eth0 => '127.0.0.1',
   :ipaddress => '127.0.0.1',
+  :os => {
+    :name => 'Ubuntu',
+    :release => {
+      :full => '18.04'
+    }
+  }
 }
