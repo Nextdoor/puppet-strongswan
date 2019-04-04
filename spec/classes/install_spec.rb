@@ -38,4 +38,27 @@ describe 'strongswan::install', :type => 'class' do
       should_not contain_package('strongswan-plugin-unity')
     end
   end
+
+  context 'os => Ubuntu 18.04' do
+    let(:facts) do
+      super().merge({
+        :operatingsystemrelease => '18',
+        :lsbdistcodename => 'bionic',
+        :lsbdistrelease => '18.04',
+        :lsbmajdistrelease => '18',
+        :os => {
+          :name => 'Ubuntu',
+          :release => {
+            :full => '18.04'
+          }
+        }
+      })
+    end
+
+    it do
+      should compile.with_all_deps
+      
+      should contain_package('libcharon-extra-plugins')
+    end
+  end
 end
