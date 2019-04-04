@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'strongswan::conn', :type => 'define' do
   let(:title) { 'unittest' }
+  let(:facts) { FACTS }
 
   context 'sample-vpc-connection' do
     let(:params) {{

@@ -13,8 +13,29 @@ class strongswan::env {
   # Default Strongswan Plugins and Version to install
   $strongswan_version = 'installed'
   $strongswan_package = 'strongswan'
-  $strongswan_plugins = [ 'strongswan-plugin-unity',
-                          'strongswan-plugin-xauth-pam' ]
+  case $facts['os']['name']{
+    'Ubuntu': {
+      case $facts['os']['release']['full'] {
+        '18.04': {
+          $strongswan_plugins = [
+              'libcharon-extra-plugins' ]
+        }
+        default: {
+          $strongswan_plugins = [
+              'strongswan-plugin-unity',
+              'strongswan-plugin-xauth-pam' ]
+        }
+      }
+    }
+    undef: {
+      fail('Unable to determine value for fact os["name"]')
+    }
+    default: {
+      $strongswan_plugins = [
+          'strongswan-plugin-unity',
+          'strongswan-plugin-xauth-pam' ]
+    }
+  }
 
   # Service configuration options
   $service_name     = 'strongswan'
