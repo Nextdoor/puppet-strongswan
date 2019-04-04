@@ -28,7 +28,7 @@ FACTS = {
   :os => {
     :name => 'Ubuntu',
     :release => {
-      :full => '18.04'
+      :full => '12.04'
     }
   }
 }
