@@ -4,9 +4,7 @@ script:
   - "bundle exec rake lint"
   - "bundle exec rake spec SPEC_OPTS='--format documentation --color'"
 rvm:
-  - 1.9.3
-  - 2.0.0
+  - 2.4.1
 env:
- - PUPPET_GEM_VERSION="~> 3.4.0"
- - PUPPET_GEM_VERSION="~> 3.5.0"
  - PUPPET_GEM_VERSION="~> 5.3.2"
+ - PUPPET_GEM_VERSION="~> 5.5.8"
