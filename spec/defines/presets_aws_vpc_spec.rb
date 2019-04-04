@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'strongswan::presets::aws_vpc', :type => 'define' do
   let(:title) { 'UNITTEST' }
+  let(:facts) { FACTS }
 
   context 'main test' do
     let(:params) {{
